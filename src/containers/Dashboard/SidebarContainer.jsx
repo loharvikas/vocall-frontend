@@ -1,6 +1,6 @@
 import React from 'react';
 import { Sidebar } from '../../components';
-import { SquareSVG, ArrowSVG, BillingSVG, ProfileSVG } from '../../assets/icons';
+import { SquareSVG, ArrowSVG, BillingSVG, ProfileSVG, PlusSVG } from '../../assets/icons';
 import * as ROUTES from '../../constant/routes';
 
 const SidebarContainer = () => {
@@ -13,6 +13,9 @@ const SidebarContainer = () => {
                     </Sidebar.Header>
                 </Sidebar.Group>
                 <Sidebar.Group>
+                    <Sidebar.Item to={ROUTES.CREATE_VOICE}>
+                        <PlusSVG />
+                    </Sidebar.Item>
                     <Sidebar.Item to={ROUTES.VOICES}>
                         <SquareSVG />
                     </Sidebar.Item>

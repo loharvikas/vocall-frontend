@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
-import { SidebarContainer, VoiceContainer, AccountContainer, BillingContainer, InvoiceContainer, FeatureContainer } from "../containers";
+import { SidebarContainer, VoiceContainer, AccountContainer, BillingContainer, InvoiceContainer, FeatureContainer, CreateContainer } from "../containers";
 import * as ROUTES from '../constant/routes';
 
 const Dashboard = () => {
@@ -9,12 +9,16 @@ const Dashboard = () => {
             <SidebarContainer />
             <Container>
                 <FeatureContainer />
-                <Routes>
-                    <Route path={ROUTES.VOICES} element={<VoiceContainer />} />
-                    <Route path={ROUTES.ACCOUNT} element={<AccountContainer />} />
-                    <Route path={ROUTES.BILLING} element={<BillingContainer />} />
-                    <Route path={ROUTES.INVOICES} element={<InvoiceContainer />} />
-                </Routes>
+                <div style={{ marginLeft: "22px" }}>
+
+                    <Routes>
+                        <Route path={ROUTES.CREATE_VOICE} element={<CreateContainer />} />
+                        <Route path={ROUTES.VOICES} element={<VoiceContainer />} />
+                        <Route path={ROUTES.ACCOUNT} element={<AccountContainer />} />
+                        <Route path={ROUTES.BILLING} element={<BillingContainer />} />
+                        <Route path={ROUTES.INVOICES} element={<InvoiceContainer />} />
+                    </Routes>
+                </div>
             </Container>
         </>
     )

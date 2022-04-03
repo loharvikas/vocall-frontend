@@ -5,14 +5,24 @@ export const Container = styled.div`
     flex-direction: column;
     border-radius: 5px;
     background-color: var(--TEAL-500);
-    max-width: 400px;
+    width: 300px;
+    margin-left: 20px;
     height: 200px;
     position: relative;
+    cursor:pointer;
+    color:var(--WHITE-999);
+    transition: all 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+
+    &:hover {
+        -webkit-box-shadow: 1px 0px 97px -57px rgba(50,252,118,1);
+-moz-box-shadow: 1px 0px 97px -57px rgba(50,252,118,1);
+box-shadow: 1px 0px 97px -57px rgba(50,252,118,1);
+    }
 `
 
 export const Header = styled.div`
     height: 40px;
-    padding: 10px;
+    padding: 20px;
 `
 
 export const Body = styled.div`
@@ -21,6 +31,7 @@ export const Body = styled.div`
 
 export const Footer = styled.div`
     display: flex;
+    flex-direction: row-reverse;
     position: absolute;
     bottom:0;
     left:0;
@@ -32,10 +43,14 @@ export const Footer = styled.div`
 export const Button = styled.button`
     border: none;
     height:100%;
-    min-width:40px;
+    min-width:50px;
     cursor: pointer;
     border: 1px solid lightgrey;
     background-color: transparent;
+    margin-left:-1px;
+    &:first-of-type {
+        margin-left:0px;
+    }
     svg {
         fill: black;
         stroke: 1;
