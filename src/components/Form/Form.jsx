@@ -1,4 +1,4 @@
-import { Container, Base, Wrapper, Title, Lablel, Input, Text, Submit } from './Form.styels';
+import { Container, Base, Wrapper, TextArea, Title, Label, Input, Text, Submit } from './Form.styles';
 
 export default function Form({ children, ...restProps }) {
     return <Container {...restProps}>{children}</Container>
@@ -22,6 +22,10 @@ Form.Label = function FormLabel({ children, ...restProps }) {
 
 Form.Input = function FormInput({ children, ...restProps }) {
     return <Input {...restProps}>{children}</Input>
+}
+
+Form.TextArea = function FormTextArea({ children, ...restProps }) {
+    return <TextArea {...restProps}>{children}</TextArea>
 }
 
 Form.Text = function FormText({ children, ...restProps }) {

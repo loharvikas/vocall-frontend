@@ -168,3 +168,16 @@ export const DangerButton = styled(GlobaleButton)`
     color: var(--BLACK-999);
 `;
 
+
+export const Frame = styled.div`
+    display: flex;
+    width: 100%;
+    height: 100%;
+`
+
+export const Group = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+`
