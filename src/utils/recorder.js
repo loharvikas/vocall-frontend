@@ -18,12 +18,12 @@ const recordAudio = () => {
                         mediaRecorder.addEventListener("stop", () => {
                             const audioBlob = new Blob(audioChunks);
                             const audioUrl = URL.createObjectURL(audioBlob);
+                            const mp3fromblob = new File([audioBlob], "incomingaudioclip.mp3");
                             const audio = new Audio(audioUrl);
                             const play = () => {
                                 audio.play();
                             };
-
-                            resolve({ audioBlob, audioUrl, play });
+                            resolve({ audioBlob, audioUrl, play, mp3fromblob, pause });
                         });
 
                         mediaRecorder.stop();
@@ -31,10 +31,14 @@ const recordAudio = () => {
                 };
 
                 const pause = () => {
-                    mediaRecorder.pause()
+                    mediaRecorder.pause();
                 }
 
-                resolve({ start, stop, pause });
+                const resume = () => {
+                    mediaRecorder.resume();
+                }
+
+                resolve({ start, stop, pause, resume, stream });
             });
     });
 };

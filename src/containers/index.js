@@ -6,3 +6,5 @@ export { default as BillingContainer } from './Dashboard/BillingContainer';
 export { default as InvoiceContainer } from './Dashboard/InvoiceContainer';
 export { default as AccountContainer } from './Dashboard/AccountContainer';
 export { default as CreateContainer } from './Dashboard/CreateContainer';
+
+export { default as AudioContainer } from './Dashboard/AudioContainer';

@@ -45,7 +45,6 @@ const VoiceContainer = () => (
 const Wrapper = styled.div`
     display:flex;
     width:100%;
-    border:1px solid green;
 `
 
 export default VoiceContainer;
