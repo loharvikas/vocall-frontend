@@ -6,8 +6,8 @@ export const Container = styled.div`
     border-radius: 5px;
     background-color: var(--TEAL-500);
     width: 300px;
-    margin-left: 20px;
     height: 200px;
+    margin-left: 20px;
     position: relative;
     cursor:pointer;
     color:var(--WHITE-999);
@@ -17,6 +17,10 @@ export const Container = styled.div`
         -webkit-box-shadow: 1px 0px 97px -57px rgba(50,252,118,1);
 -moz-box-shadow: 1px 0px 97px -57px rgba(50,252,118,1);
 box-shadow: 1px 0px 97px -57px rgba(50,252,118,1);
+    }
+
+    &:first-of-type {
+        margin-left: 0px;
     }
 `
 
@@ -48,12 +52,32 @@ export const Button = styled.button`
     border: 1px solid lightgrey;
     background-color: transparent;
     margin-left:-1px;
+    position: relative;
     &:first-of-type {
         margin-left:0px;
     }
     svg {
         fill: black;
         stroke: 1;
+    }
+
+    &:hover {
+
+        &::before{
+            content:${({ tooltip }) => tooltip === 'edit' ? 'edit' : 'no name'};
+            position: absolute;
+            left:-5px;
+            right:-10px;
+            top: -40px;
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 3px;
+            height: 30px;
+            width: 120%;
+        }
     }
 `
 

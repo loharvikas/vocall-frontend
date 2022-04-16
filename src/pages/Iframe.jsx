@@ -11,11 +11,10 @@ const Iframe = () => {
     useEffect(() => {
         axiosInstance.get(`voice/${voiceId}/`)
             .then(res => {
-                console.log(res.data.file)
                 setAudioUrl(res?.data?.file);
             })
             .catch(err => console.error(err))
-    }, [])
+    }, [voiceId])
     return (
         <AudioContainer audioUrl={audioUrl} />
     )

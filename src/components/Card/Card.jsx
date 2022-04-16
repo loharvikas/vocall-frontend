@@ -30,5 +30,8 @@ Card.Footer = function CardFooter({ children, ...restProps }) {
 }
 
 Card.Button = function CardButton({ children, ...restProps }) {
-    return <Button {...restProps}>{children}</Button>
+    console.log(restProps)
+    return (
+        <Button {...restProps}>{children}</Button>
+    )
 }
