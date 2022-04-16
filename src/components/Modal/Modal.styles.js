@@ -101,4 +101,5 @@ font-weight: 500;
 export const Save = styled(SuccessButton)`
 padding: 0.6rem 0.7rem;
 font-weight: 500;
+margin-left: 10px;
 `

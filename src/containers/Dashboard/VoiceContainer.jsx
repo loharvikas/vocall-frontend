@@ -15,13 +15,14 @@ const VoiceContainer = () => {
     const [preview, setPreview] = useState(false);
     const [del, setDel] = useState(false);
     console.log(preview)
+
     return (
 
         <>
-            {edit && ReactDOM.createPortal(<Edit />, document.body)}
+            {edit && ReactDOM.createPortal(<Edit setEdit={setEdit} />, document.body)}
             {del && ReactDOM.createPortal(<Delete />, document.body)}
             {preview && ReactDOM.createPortal(<Preview />, document.body)}
-            <h1>Voices</h1>
+            <h1 style={{ marginTop: '30px' }}>Voices</h1>
             <Wrapper>
 
                 <Card>
@@ -54,19 +55,42 @@ const VoiceContainer = () => {
                         {/* <Card.Button tooltip='edit'><EditSVG /></Card.Button> */}
                     </Card.Footer>
                 </Card >
+                <Card>
+                    <Card.Header>
+                        Speak Vocall
+                    </Card.Header>
+                    <Card.Body>
+                        <Card.Title>New Game</Card.Title>
+                        <Card.SubTitle>Amazing</Card.SubTitle>
+                    </Card.Body>
+                    <Card.Footer>
+                        <Card.Button tooltip='edit' onClick={() => setEdit(true)}><EditSVG /></Card.Button>
+                        <Card.Button tooltip='delete' onClick={() => setDel(true)}><DeleteCardSVG /></Card.Button>
+                        <Card.Button tooltip='preview' onClick={() => setPreview(true)}><PreviewSVG /></Card.Button>
+                        {/* <Card.Button tooltip='edit'><EditSVG /></Card.Button> */}
+                    </Card.Footer>
+                </Card >
+                <Card>
+                    <Card.Header>
+                        Speak Vocall
+                    </Card.Header>
+                    <Card.Body>
+                        <Card.Title>New Game</Card.Title>
+                        <Card.SubTitle>Amazing</Card.SubTitle>
+                    </Card.Body>
+                    <Card.Footer>
+                        <Card.Button tooltip='edit' onClick={() => setEdit(true)}><EditSVG /></Card.Button>
+                        <Card.Button tooltip='delete' onClick={() => setDel(true)}><DeleteCardSVG /></Card.Button>
+                        <Card.Button tooltip='preview' onClick={() => setPreview(true)}><PreviewSVG /></Card.Button>
+                        {/* <Card.Button tooltip='edit'><EditSVG /></Card.Button> */}
+                    </Card.Footer>
+                </Card >
+
             </Wrapper >
         </>
     )
 }
 
-
-
-
-const Wrapper = styled.div`
-    display:flex;
-    width:100%;
-    margin-top: 20px;
-`
 
 
 const Preview = () => {
@@ -88,7 +112,7 @@ const Preview = () => {
     )
 }
 
-const Edit = () => {
+const Edit = ({ setEdit }) => {
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -133,11 +157,12 @@ const Edit = () => {
                                 <Form.Submit type='submit'>Create</Form.Submit>
                             </Group>
                         </Form.Base>
-
                     </Form>
+
                 </Modal.Body>
                 <Modal.Footer>
-                    <Modal.Cancel>Cancel</Modal.Cancel>
+                    <Modal.Save>Save changes</Modal.Save>
+                    <Modal.Cancel onClick={() => setEdit(false)}>Cancel</Modal.Cancel>
                 </Modal.Footer>
             </Modal.Inner>
         </Modal>
@@ -149,6 +174,13 @@ const Delete = () => {
         <h1>Hello</h1>
     )
 }
+
+const Wrapper = styled.div`
+margin-top: 30px;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+`
 
 
 export default VoiceContainer;

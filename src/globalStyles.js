@@ -144,7 +144,7 @@ export const SecondaryButton = styled(GlobaleButton)`
 `;
 
 export const SuccessButton = styled(GlobaleButton)`
-    background-color: var(--TEAL-700);
+    background-color: var(--TEAL-500);
     color: var(--WHITE-999);
 `;
 

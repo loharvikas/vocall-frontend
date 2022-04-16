@@ -2,11 +2,10 @@ import styled from "styled-components/macro";
 import { PrimaryButton } from '../../globalStyles';
 
 export const Container = styled.div`
-    background-color: var(--WHITE-800);
+    /* background-color: var(--WHITE-800);
     padding: 30px;
     border:var(--BORDER-SECONDARY);
-    border-radius: 5px;
-
+    border-radius: 5px; */
 `;
 
 export const Base = styled.form``;

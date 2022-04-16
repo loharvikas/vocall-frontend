@@ -5,9 +5,8 @@ export const Container = styled.div`
     flex-direction: column;
     border-radius: 5px;
     background-color: var(--TEAL-500);
-    width: 300px;
+    max-width: 300px;
     height: 200px;
-    margin-left: 20px;
     position: relative;
     cursor:pointer;
     color:var(--WHITE-999);
@@ -19,9 +18,6 @@ export const Container = styled.div`
 box-shadow: 1px 0px 97px -57px rgba(50,252,118,1);
     }
 
-    &:first-of-type {
-        margin-left: 0px;
-    }
 `
 
 export const Header = styled.div`
