@@ -1,5 +1,6 @@
 import styled from "styled-components/macro";
 import { PrimaryButton } from '../../globalStyles';
+import { Link as ReactRouterLink } from 'react-router-dom'
 
 export const Container = styled.div`
     /* background-color: var(--WHITE-800);
@@ -54,11 +55,24 @@ export const Label = styled.label`
     font-weight: bold;
 `;
 
-export const Text = styled.p``;
+export const Link = styled(ReactRouterLink)`
+    color: var(--BLUE-500);
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 20px;
+`
+
+export const Text = styled.p`
+    font-weight: 500;
+    font-size: 14px;
+    color:var(--GREY-500);
+    margin-top: 20px;
+    text-align: center;
+`;
 
 export const Submit = styled(PrimaryButton)`
     color:var(--WHITE-999);
-    width: 30%;
+    width: 100%;
     transition: all 200ms linear;
 
     &:hover {

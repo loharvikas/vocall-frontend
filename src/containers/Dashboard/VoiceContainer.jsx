@@ -4,7 +4,7 @@ import { Card, Modal } from "../../components";
 import styled from "styled-components";
 import { EditSVG, DeleteCardSVG, PreviewSVG } from "../../assets/icons";
 import { Form } from "../../components";
-import { Frame, Group } from "../../globalStyles";
+import { Group } from "../../globalStyles";
 import Recorder from "./RecordContainer";
 import axiosInstance from '../../lib/axios';
 

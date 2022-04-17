@@ -8,3 +8,4 @@ export const VOICES = 'voices';
 export const ACCOUNT = 'account';
 export const BILLING = 'billing';
 export const INVOICES = 'invoices';
+export const REDIRECT = '/dashboard';
