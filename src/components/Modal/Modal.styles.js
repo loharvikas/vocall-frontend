@@ -38,13 +38,12 @@ export const Inner = styled.div`
     justify-content: space-between;
     overflow: scroll;
     max-height: 600px;
-    min-width: 300px;
-    width: 50%;
+    width: ${({ width }) => width !== undefined ? width : '50%'};
     border-radius: 3px;
 `;
 
 export const Body = styled.main`
-max-height: 600px;
+  max-height: 600px;
   overflow: scroll;
   display: flex;
   flex-direction: column;

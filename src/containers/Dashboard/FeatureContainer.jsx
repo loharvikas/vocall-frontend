@@ -1,12 +1,12 @@
 import { Header, Feature } from "../../components";
 
-const FeatureContainer = () => {
+const FeatureContainer = ({ user }) => {
     return (
         <Header>
             <Header.Frame>
                 <Feature>
                     <Feature.Title>
-                        Welcome Back, David!
+                        Welcome Back, {user.full_name}
                     </Feature.Title>
                     <Feature.SubTitle>
                         Let's do the best today &#128075;

@@ -27,7 +27,7 @@ const Register = () => {
             .post('register/', payload)
             .then(res => {
                 const data = res.data;
-                setAuthTokens({ access_token: data.access, refresh_toke: data.refresh });
+                setAuthTokens({ access_token: data.access, refresh_token: data.refresh });
                 setUser(data.user);
                 axiosInstance.defaults.headers['Authorization'] =
                     'Bearer ' + data.access

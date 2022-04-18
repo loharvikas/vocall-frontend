@@ -1,9 +1,8 @@
-import { Form, Modal } from "../components";
+import { Form } from "../components";
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Frame, Group } from "../globalStyles";
 import styled from "styled-components/macro";
-import { Routes } from "react-router-dom";
 import * as ROUTES from '../constant/routes'
 import axiosInstance from "../lib/axios";
 
@@ -25,7 +24,7 @@ const Login = () => {
             .post('login/', payload)
             .then(res => {
                 const data = res.data;
-                setAuthTokens({ access_token: data.access, refresh_toke: data.refresh });
+                setAuthTokens({ access_token: data.access, refresh_token: data.refresh });
                 setUser(data.user);
                 axiosInstance.defaults.headers['Authorization'] =
                     'Bearer ' + data.access

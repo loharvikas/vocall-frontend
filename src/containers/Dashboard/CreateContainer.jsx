@@ -6,7 +6,7 @@ import Recorder from "./RecordContainer";
 import axiosInstance from '../../lib/axios';
 
 
-export default function CreateContainer() {
+export default function CreateContainer({ user }) {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [audioFile, setAudioFile] = useState('');
@@ -17,10 +17,12 @@ export default function CreateContainer() {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append("file", audioFile)
-        formData.append("user", 1)
-        formData.append("name", name)
+
+        formData.append("file", audioFile);
+        formData.append("user", user.id);
+        formData.append("name", name);
         formData.append("description", description)
+        console.log("SENDING")
         axiosInstance.post('voice/', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -48,7 +50,10 @@ export default function CreateContainer() {
                         </Group>
                         <Recorder setAudioFile={setAudioFile} audioFile={audioFile} audioUrl={audioUrl} setAudioUrl={setAudioUrl} />
                         <Group>
-                            <Form.Submit type='submit'>Create</Form.Submit>
+                            <div style={{ width: '30%' }}>
+
+                                <Form.Submit type='submit'>Create</Form.Submit>
+                            </div>
                         </Group>
                     </Form.Base>
 
