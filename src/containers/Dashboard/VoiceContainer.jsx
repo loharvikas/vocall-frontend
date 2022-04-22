@@ -4,7 +4,7 @@ import { Card, Modal } from "../../components";
 import styled from "styled-components";
 import { EditSVG, DeleteCardSVG, PreviewSVG } from "../../assets/icons";
 import { Form } from "../../components";
-import { Group } from "../../globalStyles";
+import { Group, Loader, LoaderWrapper } from "../../globalStyles";
 import Recorder from "./RecordContainer";
 import axiosInstance from '../../lib/axios';
 import { useEffect } from 'react';
@@ -52,7 +52,7 @@ const VoiceContainer = ({ user }) => {
 
         <>
             {edit && ReactDOM.createPortal(<Edit voice={voice} setEdit={setEdit} user={user} />, document.body)}
-            {del && ReactDOM.createPortal(<Delete voice={voice} user={user} setDel={setDel} />, document.body)}
+            {del && ReactDOM.createPortal(<Delete voice={voice} setDel={setDel} />, document.body)}
             {preview && ReactDOM.createPortal(<Preview voice={voice} setPreview={setPreview} />, document.body)}
             <h1 style={{ marginTop: '30px' }}>Voices</h1>
             <Wrapper>
@@ -107,11 +107,13 @@ const Edit = ({ voice, setEdit, user }) => {
     const [message, setMessage] = useState({
         type: '',
         content: ''
-    })
+    });
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = e => {
 
         e.preventDefault();
+        setLoading(true);
 
         const formData = new FormData();
         formData.append("file", audioFile)
@@ -128,13 +130,15 @@ const Edit = ({ voice, setEdit, user }) => {
                     setMessage({
                         type: STYLES.FORM_SUCCESS,
                         content: 'Your information is successfully updated!'
-                    })
+                    });
+                    setLoading(false);
                 })
                 .catch(() => {
                     setMessage({
                         type: STYLES.FORM_ERROR,
                         content: 'Invalid inputs'
-                    })
+                    });
+                    setLoading(false);
                 })
             )
     }
@@ -142,14 +146,18 @@ const Edit = ({ voice, setEdit, user }) => {
     return (
         <Modal>
             <Modal.Inner>
+                {loading && <LoaderWrapper>
+                    <Loader />
+                </LoaderWrapper>}
                 <Modal.Header>
                     <Modal.Title>Hello</Modal.Title>
                     <Modal.SubTitle>No Hello</Modal.SubTitle>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form>
+                    <div>
+
                         <Form.Base>
-                            {message.content !== null && <Form.Message type={message.type} display='block'>
+                            {message.content.length > 0 && <Form.Message type={message.type} display='block'>
                                 {message.content}</Form.Message>}
                             <Group>
                                 <Form.Label>Voicy name</Form.Label>
@@ -161,7 +169,7 @@ const Edit = ({ voice, setEdit, user }) => {
                             </Group>
                             <Recorder setAudioFile={setAudioFile} audioFile={audioFile} audioUrl={audioUrl} setAudioUrl={setAudioUrl} />
                         </Form.Base>
-                    </Form>
+                    </div>
 
                 </Modal.Body>
                 <Modal.Footer>
@@ -174,19 +182,31 @@ const Edit = ({ voice, setEdit, user }) => {
 }
 
 
-const Delete = ({ voice, user, setDel }) => {
+const Delete = ({ voice, setDel }) => {
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = e => {
         e.preventDefault();
-
+        setLoading(true);
         axiosInstance
             .delete(`voice/${voice.uuid}/`)
-            .then(() => setDel(false))
-            .catch(err => console.error(err))
+            .then(() => {
+                setLoading(false);
+                setDel(false);
+                // window.location.reload();
+            })
+            .catch(err => {
+                setLoading(false)
+            }
+            )
     }
+
     return (
         <Modal>
             <Modal.Inner width='30%'>
+                {loading && <LoaderWrapper>
+                    <Loader />
+                </LoaderWrapper>}
                 <Modal.Header>
                     <Modal.Title>Delete</Modal.Title>
                 </Modal.Header>
