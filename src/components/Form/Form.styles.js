@@ -1,17 +1,45 @@
 import styled from "styled-components/macro";
 import { PrimaryButton } from '../../globalStyles';
-import { Link as ReactRouterLink } from 'react-router-dom'
+import { Link as ReactRouterLink } from 'react-router-dom';
+import * as STYLES from '../../constant/styles';
 
 export const Container = styled.div`
-    /* background-color: var(--WHITE-800);
+    /* position: relative; */
+    /* background-color: pink; */
+    max-width: 900px;
+    width: 70%;
+    margin: 20px auto;
+    background-color: var(--WHITE-800);
     padding: 30px;
     border:var(--BORDER-SECONDARY);
-    border-radius: 5px; */
+    border-radius: 5px;
+    position: relative;
 `;
 
-export const Base = styled.form``;
+export const Base = styled.form`
+`;
 
-export const Wrapper = styled.div``;
+export const Message = styled.div`
+    padding: 10px;
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 14px;
+    border: 1px solid lightgray;
+    margin: 10px 0;
+
+    
+    ${({ type }) => type === STYLES.FORM_SUCCESS && `
+        background-color: rgba(34,187,51, 0.3);
+        color: green;
+        border-color: green;
+    `}
+
+    ${({ type }) => type === STYLES.FORM_ERROR && `
+        background-color: var(--RED-200);
+        color: red;
+        border-color: red;
+    `}
+`
 
 export const Title = styled.h1`
     text-align: center;

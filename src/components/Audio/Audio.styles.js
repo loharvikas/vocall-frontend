@@ -5,7 +5,8 @@ export const Container = styled.div`
     padding: 7px;
     border-radius: 20px;
     box-shadow: 5px 5px 20px 10px rgba(0,0,0,0.1);
-    background-color: var(--WHITE-999);
+    background-color: var(--TEAL-100);
+
 `;
 
 export const Frame = styled.div`

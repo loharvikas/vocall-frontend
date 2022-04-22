@@ -1,4 +1,4 @@
-import { Container, Base, Wrapper, TextArea, Title, Label, Input, Text, Submit, Link } from './Form.styles';
+import { Container, Base, TextArea, Title, Label, Input, Text, Submit, Link, Message } from './Form.styles';
 
 export default function Form({ children, ...restProps }) {
     return <Container {...restProps}>{children}</Container>
@@ -8,9 +8,10 @@ Form.Base = function FormBase({ children, ...restProps }) {
     return <Base {...restProps}>{children}</Base>
 }
 
-Form.Wrapper = function FormWrapper({ children, ...restProps }) {
-    return <Wrapper {...restProps}>{children}</Wrapper>
+Form.Message = function FormMessage({ children, ...restProps }) {
+    return <Message {...restProps}>{children}</Message>
 }
+
 
 Form.Title = function FormTitle({ children, ...restProps }) {
     return <Title {...restProps}>{children}</Title>

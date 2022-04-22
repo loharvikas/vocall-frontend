@@ -181,3 +181,60 @@ export const Group = styled.div`
     width: 100%;
     height: 100%;
 `
+
+export const LoaderWrapper = styled.div`
+    overflow: hidden;
+    position: absolute;
+    top: 0; 
+    left: 0;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    align-content: center; 
+    justify-content: flex-start;  
+    z-index: 100000;
+`
+
+
+export const Loader = styled.div`
+    height: 3px;
+    width: 100%;
+    background: var(--TEAL-400);
+
+    &:before {
+        content: '';
+        position: absolute;
+        display: block;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        background-color: var(--TEAL-700);
+        height: 3px;
+        width: 20%;
+        animation: getWidth 1.3s linear infinite;
+    }
+
+    @keyframes getWidth {
+        0% {
+            left: 0%;
+            width:20%;
+        }
+        10% {
+            left: 10%;
+            width: 30%;
+        }
+        25% {
+            left: 25%;
+            width: 40%;
+        }
+        50% {
+            left: 50%;
+            width: 50%;
+        }
+        75% {
+            left: 75%;
+            width: 60%;
+        }
+        100% { left: 100%; }
+    }
+`

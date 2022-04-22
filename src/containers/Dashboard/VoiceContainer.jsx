@@ -9,6 +9,8 @@ import Recorder from "./RecordContainer";
 import axiosInstance from '../../lib/axios';
 import { useEffect } from 'react';
 import { AudioContainer } from '..';
+import * as STYLES from '../../constant/styles';
+
 
 
 
@@ -81,7 +83,7 @@ const VoiceContainer = ({ user }) => {
 const Preview = ({ voice, setPreview }) => {
     return (
         <Modal>
-            <Modal.Inner>
+            <Modal.Inner width='30%'>
                 <Modal.Header>
                     <Modal.Title>Preview</Modal.Title>
                 </Modal.Header>
@@ -102,6 +104,10 @@ const Edit = ({ voice, setEdit, user }) => {
     const [description, setDescription] = useState(voice.description);
     const [audioFile, setAudioFile] = useState('');
     const [audioUrl, setAudioUrl] = useState();
+    const [message, setMessage] = useState({
+        type: '',
+        content: ''
+    })
 
     const handleSubmit = e => {
 
@@ -112,12 +118,25 @@ const Edit = ({ voice, setEdit, user }) => {
         formData.append("user", user.id)
         formData.append("name", name)
         formData.append("description", description)
-        axiosInstance.patch(`voice/${voice.uuid}/`, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
+        axiosInstance
+            .patch(`voice/${voice.uuid}/`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             }
-        }
-        )
+                .then(res => {
+                    setMessage({
+                        type: STYLES.FORM_SUCCESS,
+                        content: 'Your information is successfully updated!'
+                    })
+                })
+                .catch(() => {
+                    setMessage({
+                        type: STYLES.FORM_ERROR,
+                        content: 'Invalid inputs'
+                    })
+                })
+            )
     }
 
     return (
@@ -130,6 +149,8 @@ const Edit = ({ voice, setEdit, user }) => {
                 <Modal.Body>
                     <Form>
                         <Form.Base>
+                            {message.content !== null && <Form.Message type={message.type} display='block'>
+                                {message.content}</Form.Message>}
                             <Group>
                                 <Form.Label>Voicy name</Form.Label>
                                 <Form.Input name='name' onChange={e => setName(e.target.value)} value={name} />
