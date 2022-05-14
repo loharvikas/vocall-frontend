@@ -1,21 +1,30 @@
-import { Form, Modal } from "../components";
+import { Form } from "../components";
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { Frame, Group } from "../globalStyles";
+import { Frame, Group, Loader, LoaderWrapper } from "../globalStyles";
+import { Header } from "../components";
 import styled from "styled-components/macro";
-import { Routes } from "react-router-dom";
 import * as ROUTES from '../constant/routes';
+import * as STYLES from '../constant/styles';
 import axiosInstance from "../lib/axios";
+
 
 
 const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState({
+        type: '',
+        content: ''
+    })
     const { setUser, setAuthTokens } = useContext(AuthContext)
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading(true);
 
         const payload = {
             full_name: name,
@@ -26,62 +35,80 @@ const Register = () => {
         axiosInstance
             .post('register/', payload)
             .then(res => {
+                setLoading(false)
                 const data = res.data;
                 setAuthTokens({ access_token: data.access, refresh_token: data.refresh });
                 setUser(data.user);
                 axiosInstance.defaults.headers['Authorization'] =
                     'Bearer ' + data.access
 
+
             })
-            .catch(err => console.error(err))
+            .catch(err => {
+                setLoading(false);
+                setMessage({
+                    type: STYLES.FORM_ERROR,
+                    content: 'User with this email already exists!'
+                })
+            })
     }
 
     return (
-        <Wrapper>
+        <>
+            <Header>
+                <Header.Frame>
+                    <Header.Group>
+                        <Header.Logo to={ROUTES.HOME}>Vocall</Header.Logo>
+                    </Header.Group>
+                </Header.Frame>
+            </Header>
+            <Wrapper>
 
-            <Form>
-                <Form.Base onSubmit={handleSubmit}>
-                    <Frame>
-                        <Form.Title>Register</Form.Title>
-                    </Frame>
-                    <Group>
-                        <Form.Label>Full Name</Form.Label>
-                        <Form.Input type='text' placeholder='Your name..' value={name}
-                            onChange={e => setName(e.target.value)} />
-                    </Group>
-                    <Group>
-                        <Form.Label>Email</Form.Label>
-                        <Form.Input type='text' placeholder='Your email..' value={email}
-                            onChange={e => setEmail(e.target.value)} />
-                    </Group>
-                    <Group>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Input type='password' placeholder='Your password..'
-                            value={password}
-                            onChange={e => setPassword(e.target.value)} />
-                        <Form.Link to='#'>Forget Password ?</Form.Link>
-                    </Group>
-                    <Group>
-                        <Form.Submit type='submit'>Sign up</Form.Submit>
-                    </Group>
-                    <Group>
-                        <Form.Text>Already have an account ? <Form.Link to={ROUTES.LOGIN}>Sign In</Form.Link></Form.Text>
-                    </Group>
-                    <Section>or</Section>
+                <Form>
+                    {loading && <LoaderWrapper>
+                        <Loader />
+                    </LoaderWrapper>}
+                    <Form.Base onSubmit={handleSubmit}>
+                        {message.content.length > 0 && <Form.Message type={message.type}>{message.content}</Form.Message>}
+                        <Frame>
+                            <Form.Title>Register</Form.Title>
+                        </Frame>
+                        <Group>
+                            <Form.Label>Full Name</Form.Label>
+                            <Form.Input type='text' placeholder='Your name..' value={name}
+                                onChange={e => setName(e.target.value)} />
+                        </Group>
+                        <Group>
+                            <Form.Label>Email</Form.Label>
+                            <Form.Input type='text' placeholder='Your email..' value={email}
+                                onChange={e => setEmail(e.target.value)} />
+                        </Group>
+                        <Group>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Input type='password' placeholder='Your password..'
+                                value={password}
+                                onChange={e => setPassword(e.target.value)} />
+                            <Form.Link to='#'>Forget Password ?</Form.Link>
+                        </Group>
+                        <Group>
+                            <Form.Submit type='submit'>Sign up</Form.Submit>
+                        </Group>
+                        <Group>
+                            <Form.Text>Already have an account ? <Form.Link to={ROUTES.LOGIN}>Sign In</Form.Link></Form.Text>
+                        </Group>
+                        <Section>or</Section>
 
-                </Form.Base>
-            </Form>
-        </Wrapper>
+                    </Form.Base>
+                </Form>
+            </Wrapper>
+        </>
     )
 }
 
 const Wrapper = styled.div`
-    width: 30%;
+    width: 45%;
     margin: auto;
     margin-top: 50px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
-    padding: 30px;
 `
 
 const Section = styled.p`

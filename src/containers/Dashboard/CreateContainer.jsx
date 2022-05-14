@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Form } from "../../components";
 import { Frame, Group, Loader, LoaderWrapper } from "../../globalStyles";
-import styled from "styled-components";
 import Recorder from "./RecordContainer";
 import axiosInstance from '../../lib/axios';
 import * as STYLES from '../../constant/styles';
@@ -22,6 +21,7 @@ export default function CreateContainer({ user }) {
 
         e.preventDefault();
         setLoading(true);
+        console.log('I am in handleSubmit')
 
         const formData = new FormData();
 
@@ -38,7 +38,7 @@ export default function CreateContainer({ user }) {
             .then(res => {
                 setMessage({
                     type: STYLES.FORM_SUCCESS,
-                    content: 'Your voicall is created successfully!'
+                    content: 'Your vocall is created successfully!'
                 });
                 setName('');
                 setDescription('');
@@ -88,13 +88,3 @@ export default function CreateContainer({ user }) {
     )
 }
 
-
-const FormWrapper = styled.div`
-max-width: 900px;
-    width: 70%;
-    margin: 20px auto;
-    background-color: var(--WHITE-800);
-    padding: 30px;
-    border:var(--BORDER-SECONDARY);
-    border-radius: 5px;
-`

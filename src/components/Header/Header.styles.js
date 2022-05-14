@@ -24,9 +24,11 @@ export const Group = styled.div`
     /* justify-content: space-between; */
 `;
 
-export const Logo = styled.h1`
+export const Logo = styled(ReactRouterNavLink)`
+    font-size: 24px;
     color: var(--TEAL-500);
     margin-right: 30px;
+    font-weight: bold;
 `;
 
 export const LinkText = styled(ReactRouterNavLink)`
@@ -71,7 +73,7 @@ export const Button = styled(ReactRouterNavLink)`
     border: none;
     border-radius: 4px;
     text-align: center;
-    padding: 12px 26px;
+    padding: 10px 26px;
     cursor: pointer;
     margin-right: 20px;
     font-size: 14px;

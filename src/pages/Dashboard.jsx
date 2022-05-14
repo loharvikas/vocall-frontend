@@ -6,12 +6,12 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 const Dashboard = () => {
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
     return (
         <>
             <SidebarContainer />
             <Container>
-                <FeatureContainer user={user} />
+                <FeatureContainer user={user} logOut={logOut} />
                 <div style={{ marginLeft: "22px" }}>
 
                     <Routes>

@@ -11,7 +11,6 @@ const AudioContainer = ({ audioUrl }) => {
 
     const handleClick = () => {
         const audio = audioRef.current;
-        console.log(audio)
         if (playing === false) {
             audio.play();
         } else {
@@ -23,10 +22,9 @@ const AudioContainer = ({ audioUrl }) => {
     return (
         <Audio>
             <audio src={audioUrl} loop ref={audioRef} />
-            {/* <Audio.Player src={audioUrl} loop ref={audioRef}></Audio.Player> */}
             <Audio.Frame>
                 <Audio.Image />
-                <Audio.Button onClick={handleClick}>
+                <Audio.Button type='button' onClick={handleClick}>
                     {playing ? <PauseSVG /> : <ResumeSVG />}
                 </Audio.Button>
             </Audio.Frame>

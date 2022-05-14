@@ -6,7 +6,7 @@ const HeaderContainer = () => (
     <Header>
         <Header.Frame>
             <Header.Group>
-                <Header.Logo >Vocall</Header.Logo>
+                <Header.Logo to={ROUTES.HOME}>Vocall</Header.Logo>
                 <Header.LinkText to='#'>Home</Header.LinkText>
                 <Header.LinkText to='#'>About Us</Header.LinkText>
                 <Header.LinkText to='#'>Contact</Header.LinkText>
