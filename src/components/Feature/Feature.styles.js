@@ -14,6 +14,8 @@ export const Group = styled.div``;
 export const Title = styled.h1`
     color: var(--TEAL-900);
     margin-bottom: 8px;
+    font-size: ${({ fontSize }) => fontSize};
+    color: ${({ color }) => color};
 `;
 
 export const SubTitle = styled.h4`
