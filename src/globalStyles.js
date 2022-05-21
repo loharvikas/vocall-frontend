@@ -124,7 +124,7 @@ export const GlobalStyles = createGlobalStyle`
     }
 `
 
-export const GlobaleButton = styled.button`
+export const GlobalButton = styled.button`
     font-weight: 600;
     border: none;
     border-radius: 4px;
@@ -133,37 +133,37 @@ export const GlobaleButton = styled.button`
     cursor: pointer;
 `
 
-export const PrimaryButton = styled(GlobaleButton)`
+export const PrimaryButton = styled(GlobalButton)`
     background-color: var(--TEAL-500);
-    color: var(--BLACK-999);
+    color: var(--WHITE-999);
 `
 
-export const SecondaryButton = styled(GlobaleButton)`
+export const SecondaryButton = styled(GlobalButton)`
     background-color: var(--GREY-400);
     color: var(--BLACK-999);
 `;
 
-export const SuccessButton = styled(GlobaleButton)`
+export const SuccessButton = styled(GlobalButton)`
     background-color: var(--TEAL-500);
     color: var(--WHITE-999);
 `;
 
-export const WarningButton = styled(GlobaleButton)`
+export const WarningButton = styled(GlobalButton)`
     background-color: var(--YELLOW-500);
     color: var(--WHITE-999);
 `;
 
-export const LightButton = styled(GlobaleButton)`
+export const LightButton = styled(GlobalButton)`
     background-color: var(--GREY-100);
     color: var(--BLACK-999);
 `;
 
-export const DarkButton = styled(GlobaleButton)`
+export const DarkButton = styled(GlobalButton)`
     background-color: var(--GREY-900);
     color: var(--WHITE-999);
 `;
 
-export const DangerButton = styled(GlobaleButton)`
+export const DangerButton = styled(GlobalButton)`
     background-color: var(--RED-600);
     color: var(--BLACK-999);
 `;

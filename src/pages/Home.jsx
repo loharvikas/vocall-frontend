@@ -1,5 +1,5 @@
 import React from "react";
-import { HeaderContainer } from "../containers/";
+import { AudioContainer, HeaderContainer } from "../containers/";
 import styled from 'styled-components';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import * as ROUTES from '../constant/routes';
@@ -14,6 +14,12 @@ const Home = () => (
                 <Title>Let's enable your website to <br /> talk</Title>
                 <SubTitle>Use voice widgets to speak to your audience & collect voice feedback. Increase conversions and make better decisions.</SubTitle>
                 <Button to={ROUTES.REGISTER}>Start now - it's free</Button>
+            </Section>
+            <Section>
+                <Title>Let's enable your website to <br /> talk</Title>
+                <SubTitle>Use voice widgets to speak to your audience & collect voice feedback. Increase conversions and make better decisions.</SubTitle>
+                <Button to={ROUTES.REGISTER}>Start now - it's free</Button>
+                <AudioContainer />
             </Section>
         </Wrapper>
     </>
@@ -38,7 +44,7 @@ const Section = styled.section`
 `;
 
 const Title = styled.h1`
-    font-size: 6rem;
+    font-size: 7rem;
     font-weight: bold;
     text-align: center;
     margin-top: 3rem;

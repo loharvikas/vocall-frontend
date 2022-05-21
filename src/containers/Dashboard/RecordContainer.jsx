@@ -21,7 +21,6 @@ const Recorder = ({ audioFile, setAudioFile, audioUrl, setAudioUrl }) => {
         , [])
 
     const playAudio = async (mode, e) => {
-        console.log('I am in paly audio!');
         switch (mode) {
             case 'Start':
                 recorder.start();
@@ -59,9 +58,9 @@ const Recorder = ({ audioFile, setAudioFile, audioUrl, setAudioUrl }) => {
                         <StopButton type='click' onClick={e => playAudio('Stop', e)} ><StopSVG /></StopButton>
                     </Frame>
 
-                    <PauseButton type='click' onClick={e => playAudio('Pause', e)}>
-                        {paused ? <ResumeSVG /> : <PauseSVG />}
-                    </PauseButton>
+                    {/* <PauseButton type='click' onClick={e => playAudio('Pause', e)}> */}
+                    {/* {paused ? <ResumeSVG /> : <PauseSVG />} */}
+                    {/* </PauseButton> */}
                 </>
             }
             {

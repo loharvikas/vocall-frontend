@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-import { Audio } from "../../components";
+import { Audio, WaveAnimation } from "../../components";
 import { PauseSVG, ResumeSVG } from "../../assets/icons";
 
 
@@ -24,6 +24,7 @@ const AudioContainer = ({ audioUrl }) => {
             <audio src={audioUrl} loop ref={audioRef} />
             <Audio.Frame>
                 <Audio.Image />
+                {playing && <WaveAnimation />}
                 <Audio.Button type='button' onClick={handleClick}>
                     {playing ? <PauseSVG /> : <ResumeSVG />}
                 </Audio.Button>

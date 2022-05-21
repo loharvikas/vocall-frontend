@@ -5,3 +5,4 @@ export { default as Card } from './Card/Card';
 export { default as Form } from './Form/Form';
 export { default as Audio } from './Audio/Audio';
 export { default as Modal } from './Modal/Modal';
+export { default as WaveAnimation } from './WaveAnimation/WaveAnimation';

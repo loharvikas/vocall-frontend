@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Card, Modal } from "../../components";
 import styled from "styled-components";
-import { EditSVG, DeleteCardSVG, PreviewSVG } from "../../assets/icons";
+import { EditSVG, DeleteCardSVG, PreviewSVG, VocallSVG } from "../../assets/icons";
 import { Form } from "../../components";
 import { Group, Loader, LoaderWrapper } from "../../globalStyles";
 import Recorder from "./RecordContainer";
@@ -31,6 +31,7 @@ const VoiceContainer = ({ user }) => {
             .catch(err => {
                 console.error(err)
             })
+        return () => setVoices([]);
     }, [])
 
     const handlePreview = (voice) => {
@@ -51,11 +52,11 @@ const VoiceContainer = ({ user }) => {
     return (
 
         <>
-            {edit && ReactDOM.createPortal(<Edit voice={voice} setEdit={setEdit} user={user} />, document.body)}
-            {del && ReactDOM.createPortal(<Delete voice={voice} setDel={setDel} />, document.body)}
+            {edit && ReactDOM.createPortal(<Edit voice={voice} setEdit={setEdit} user={user} voices={voices} setVoices={setVoices} />, document.body)}
+            {del && ReactDOM.createPortal(<Delete voice={voice} setDel={setDel} voices={voices} setVoices={setVoices} />, document.body)}
             {preview && ReactDOM.createPortal(<Preview voice={voice} setPreview={setPreview} />, document.body)}
             <h1 style={{ marginTop: '30px' }}>Voices</h1>
-            <Wrapper>
+            {voices.length > 0 ? <Wrapper>
                 {voices.map(item => (
 
                     <Card key={item.uuid}>
@@ -73,7 +74,8 @@ const VoiceContainer = ({ user }) => {
                         </Card.Footer>
                     </Card>
                 ))}
-            </Wrapper >
+
+            </Wrapper > : <Container> <VocallSVG /><br /> <h3> You haven't create any voices yet!</h3></Container>}
         </>
     )
 }
@@ -88,7 +90,9 @@ const Preview = ({ voice, setPreview }) => {
                     <Modal.Title>Preview</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <AudioContainer audioUrl={voice.file} />
+                    <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                        <AudioContainer audioUrl={voice.file} />
+                    </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <Modal.Cancel onClick={() => setPreview(false)} >Cancel</Modal.Cancel>
@@ -98,7 +102,7 @@ const Preview = ({ voice, setPreview }) => {
     )
 }
 
-const Edit = ({ voice, setEdit, user }) => {
+const Edit = ({ voice, setEdit, user, voices, setVoices }) => {
 
     const [name, setName] = useState(voice.name);
     const [description, setDescription] = useState(voice.description);
@@ -114,33 +118,40 @@ const Edit = ({ voice, setEdit, user }) => {
 
         e.preventDefault();
         setLoading(true);
-
         const formData = new FormData();
         formData.append("file", audioFile)
         formData.append("user", user.id)
         formData.append("name", name)
         formData.append("description", description)
         axiosInstance
-            .patch(`voice/${voice.uuid}/`, formData, {
+            .put(`voice/${voice.uuid}/`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             }
-                .then(res => {
-                    setMessage({
-                        type: STYLES.FORM_SUCCESS,
-                        content: 'Your information is successfully updated!'
-                    });
-                    setLoading(false);
-                })
-                .catch(() => {
-                    setMessage({
-                        type: STYLES.FORM_ERROR,
-                        content: 'Invalid inputs'
-                    });
-                    setLoading(false);
-                })
             )
+            .then(res => {
+                setMessage({
+                    type: STYLES.FORM_SUCCESS,
+                    content: 'Your information is successfully updated!'
+                });
+                setLoading(false);
+                setEdit(false);
+                voices = voices.map(item => {
+                    if (item.uuid === voice.uuid) {
+                        return res?.data
+                    }
+                    return item;
+                })
+                setVoices(voices);
+            })
+            .catch(() => {
+                setMessage({
+                    type: STYLES.FORM_ERROR,
+                    content: 'Invalid inputs'
+                });
+                setLoading(false);
+            })
     }
 
     return (
@@ -182,7 +193,7 @@ const Edit = ({ voice, setEdit, user }) => {
 }
 
 
-const Delete = ({ voice, setDel }) => {
+const Delete = ({ voice, setDel, voices, setVoices }) => {
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = e => {
@@ -192,8 +203,9 @@ const Delete = ({ voice, setDel }) => {
             .delete(`voice/${voice.uuid}/`)
             .then(() => {
                 setLoading(false);
+                voices = voices.filter(item => item.uuid !== voice.uuid);
+                setVoices(voices);
                 setDel(false);
-                // window.location.reload();
             })
             .catch(err => {
                 setLoading(false)
@@ -227,6 +239,15 @@ margin-top: 30px;
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+`
+
+const Container = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
 `
 
 

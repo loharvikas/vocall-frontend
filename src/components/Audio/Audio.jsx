@@ -1,4 +1,5 @@
 import { Container, Player, Image, Button, Frame } from './Audio.styles';
+import voiceImage from '../../assets/images/voiceImage.jpg'
 
 export default function Audio({ children, ...restProps }) {
     return <Container {...restProps}>{children}</Container>
@@ -9,7 +10,7 @@ Audio.Player = function AudioPlayer({ children, ...restProps }) {
 }
 
 Audio.Image = function AudioImage({ children, ...restProps }) {
-    return <Image {...restProps}>{children}</Image>
+    return <Image src={voiceImage}{...restProps}>{children}</Image>
 }
 
 Audio.Button = function AudioButton({ children, ...restProps }) {

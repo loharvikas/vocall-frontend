@@ -68,12 +68,12 @@ export default function CreateContainer({ user }) {
                     <Form.Title>Create your vocall</Form.Title>
                 </Frame>
                 <Group>
-                    <Form.Label>Voicy name</Form.Label>
-                    <Form.Input name='name' onChange={e => setName(e.target.value)} value={name} />
+                    <Form.Label for="name" >Voicy name</Form.Label>
+                    <Form.Input id="name" name='name' onChange={e => setName(e.target.value)} value={name} />
                 </Group>
                 <Group>
-                    <Form.Label>Description</Form.Label>
-                    <Form.TextArea name='description' onChange={e => setDescription(e.target.value)} value={description} />
+                    <Form.Label for="description" >Description</Form.Label>
+                    <Form.TextArea id="description" name='description' onChange={e => setDescription(e.target.value)} value={description} />
                 </Group>
                 <Recorder setAudioFile={setAudioFile} audioFile={audioFile} audioUrl={audioUrl} setAudioUrl={setAudioUrl} />
                 <Group>

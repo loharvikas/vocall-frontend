@@ -1,0 +1,76 @@
+@keyframes quiet {
+    25%{
+      transform: scaleY(.4);
+    }
+    50%{
+      transform: scaleY(.2);
+    }
+    75%{
+      transform: scaleY(.6);
+    }
+  }
+  
+@keyframes normal {
+25%{
+    transform: scaleY(0.6);
+}
+50%{
+    transform: scaleY(.2);
+}
+75%{
+    transform: scaleY(.4);
+}
+}
+@keyframes loud {
+25%{
+    transform: scaleY(0.7);
+}
+50%{
+    transform: scaleY(0.2);
+}
+75%{
+    transform: scaleY(0.8);
+}
+}
+
+
+.boxContainer{
+display: flex;
+justify-content: space-between;
+margin: 0 12px;
+/* height: 64px; */
+--boxSize: 3px;
+--gutter: 4px;
+width: calc((var(--boxSize) + var(--gutter)) * 5);
+}
+  
+.box{
+transform: scaleY(.4);
+height: 85%;
+width: var(--boxSize);
+background: #12E2DC;
+animation-duration: 1.2s;
+animation-timing-function: ease-in-out;
+animation-iteration-count: infinite;
+border-radius: 6px;
+}
+
+.box1{
+animation-name: quiet;
+}
+
+.box2{
+animation-name: normal;
+}
+
+.box3{
+animation-name: quiet;
+}
+
+.box4{
+animation-name: loud;
+}
+
+.box5{
+animation-name: quiet;
+}
