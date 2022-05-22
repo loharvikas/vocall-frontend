@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Card, Modal } from "../../components";
 import styled from "styled-components";
-import { EditSVG, DeleteCardSVG, PreviewSVG, VocallSVG } from "../../assets/icons";
+import { EditSVG, DeleteCardSVG, PreviewSVG, VocallSVG, CodePreviewSVG } from "../../assets/icons";
 import { Form } from "../../components";
 import { Group, Loader, LoaderWrapper } from "../../globalStyles";
 import Recorder from "./RecordContainer";
@@ -20,6 +20,7 @@ const VoiceContainer = ({ user }) => {
     const [del, setDel] = useState(false);
     const [voices, setVoices] = useState([]);
     const [voice, setVoice] = useState(null);
+    const [apiKeyView, setAPIKeyView] = useState('');
 
     useEffect(() => {
         axiosInstance
@@ -49,9 +50,15 @@ const VoiceContainer = ({ user }) => {
         setDel(true);
     }
 
+    const handleAPIKeyView = (voice) => {
+        setVoice(voice);
+        setAPIKeyView(true);
+    }
+
     return (
 
         <>
+            {apiKeyView && ReactDOM.createPortal(<APIKeyView voice={voice} setAPIKeyView={setAPIKeyView} />, document.body)}
             {edit && ReactDOM.createPortal(<Edit voice={voice} setEdit={setEdit} user={user} voices={voices} setVoices={setVoices} />, document.body)}
             {del && ReactDOM.createPortal(<Delete voice={voice} setDel={setDel} voices={voices} setVoices={setVoices} />, document.body)}
             {preview && ReactDOM.createPortal(<Preview voice={voice} setPreview={setPreview} />, document.body)}
@@ -71,6 +78,7 @@ const VoiceContainer = ({ user }) => {
                             <Card.Button onClick={() => handleDel(item)}><DeleteCardSVG /></Card.Button>
                             <Card.Button onClick={() => handlePreview(item)}><PreviewSVG /></Card.Button>
                             <Card.Button onClick={() => handleEdit(item)}><EditSVG /></Card.Button>
+                            <Card.Button onClick={() => handleAPIKeyView(item)}><CodePreviewSVG /></Card.Button>
                         </Card.Footer>
                     </Card>
                 ))}
@@ -102,6 +110,26 @@ const Preview = ({ voice, setPreview }) => {
     )
 }
 
+const APIKeyView = ({ voice, setAPIKeyView }) => {
+    return (
+        <Modal>
+            <Modal.Inner width='30%'>
+                <Modal.Header>
+                    <Modal.Title>APIKey</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                        <h5>{`https://website.com/voices/iframe/${voice.uuid}`}</h5>
+                    </div>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Modal.Cancel onClick={() => setAPIKeyView(false)} >Cancel</Modal.Cancel>
+                </Modal.Footer>
+            </Modal.Inner>
+        </Modal>
+    )
+}
+
 const Edit = ({ voice, setEdit, user, voices, setVoices }) => {
 
     const [name, setName] = useState(voice.name);
@@ -124,7 +152,7 @@ const Edit = ({ voice, setEdit, user, voices, setVoices }) => {
         formData.append("name", name)
         formData.append("description", description)
         axiosInstance
-            .put(`voice/${voice.uuid}/`, formData, {
+            .put(`voice/update/${voice.uuid}/`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -193,6 +221,7 @@ const Edit = ({ voice, setEdit, user, voices, setVoices }) => {
 }
 
 
+
 const Delete = ({ voice, setDel, voices, setVoices }) => {
     const [loading, setLoading] = useState(false);
 
@@ -200,7 +229,7 @@ const Delete = ({ voice, setDel, voices, setVoices }) => {
         e.preventDefault();
         setLoading(true);
         axiosInstance
-            .delete(`voice/${voice.uuid}/`)
+            .delete(`voice/delete/${voice.uuid}/`)
             .then(() => {
                 setLoading(false);
                 voices = voices.filter(item => item.uuid !== voice.uuid);
@@ -233,6 +262,7 @@ const Delete = ({ voice, setDel, voices, setVoices }) => {
         </Modal >
     )
 }
+
 
 const Wrapper = styled.div`
 margin-top: 30px;

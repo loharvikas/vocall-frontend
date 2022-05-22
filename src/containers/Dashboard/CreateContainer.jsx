@@ -21,8 +21,14 @@ export default function CreateContainer({ user }) {
 
         e.preventDefault();
         setLoading(true);
-        console.log('I am in handleSubmit')
-
+        if (audioFile.length === 0 || typeof audioFile === undefined || typeof audioFile === null) {
+            setMessage({
+                type: STYLES.FORM_ERROR,
+                content: 'Audio is required'
+            });
+            setLoading(false);
+            return
+        }
         const formData = new FormData();
 
         formData.append("file", audioFile);
@@ -68,14 +74,14 @@ export default function CreateContainer({ user }) {
                     <Form.Title>Create your vocall</Form.Title>
                 </Frame>
                 <Group>
-                    <Form.Label for="name" >Voicy name</Form.Label>
+                    <Form.Label htmlFor="name" >Voicy name</Form.Label>
                     <Form.Input id="name" name='name' onChange={e => setName(e.target.value)} value={name} />
                 </Group>
                 <Group>
-                    <Form.Label for="description" >Description</Form.Label>
+                    <Form.Label htmlFor="description" >Description</Form.Label>
                     <Form.TextArea id="description" name='description' onChange={e => setDescription(e.target.value)} value={description} />
                 </Group>
-                <Recorder setAudioFile={setAudioFile} audioFile={audioFile} audioUrl={audioUrl} setAudioUrl={setAudioUrl} />
+                <Recorder setAudioFile={setAudioFile} audioFile={audioFile} audioUrl={audioUrl} setAudioUrl={setAudioUrl} setMessage={setMessage} />
                 <Group>
                     <div style={{ width: '30%' }}>
 

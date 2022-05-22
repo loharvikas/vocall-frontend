@@ -2,7 +2,8 @@ import styled from "styled-components/macro";
 
 export const Container = styled.div`
     width: 140px;
-    padding: 7px;
+
+    padding: 10px;
     border-radius: 12px;
     box-shadow: 5px 5px 20px 10px rgba(0,0,0,0.1);
     background-color: var(--TEAL-200);

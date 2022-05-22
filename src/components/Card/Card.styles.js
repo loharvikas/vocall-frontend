@@ -32,7 +32,8 @@ export const Body = styled.div`
 
 export const Footer = styled.div`
     display: flex;
-    flex-direction: row-reverse;
+    width:100%;
+    flex-direction:row-reverse;
     position: absolute;
     bottom:0;
     left:0;

@@ -3,8 +3,9 @@ import { recordAudio } from "../../utils";
 import styled from "styled-components";
 import { RecordSVG, StopSVG, PauseSVG, ResumeSVG } from "../../assets/icons";
 import AudioContainer from './AudioContainer';
+import * as STYLES from '../../constant/styles';
 
-const Recorder = ({ audioFile, setAudioFile, audioUrl, setAudioUrl }) => {
+const Recorder = ({ audioFile, setAudioFile, audioUrl, setAudioUrl, setMessage }) => {
     const [recording, setRecording] = useState(false);
     const [paused, setPaused] = useState(false);
     const [stop, setStop] = useState(false);
@@ -12,6 +13,7 @@ const Recorder = ({ audioFile, setAudioFile, audioUrl, setAudioUrl }) => {
 
     const initilizeAudio = async () => {
         const r = await recordAudio();
+        console.log(r)
         setRecorder(r);
     }
 
@@ -21,6 +23,10 @@ const Recorder = ({ audioFile, setAudioFile, audioUrl, setAudioUrl }) => {
         , [])
 
     const playAudio = async (mode, e) => {
+        if (recorder === undefined || recorder === null) {
+            setMessage({ type: STYLES.FORM_ERROR, content: "Recording device not accessible." })
+            return
+        }
         switch (mode) {
             case 'Start':
                 recorder.start();
@@ -39,6 +45,7 @@ const Recorder = ({ audioFile, setAudioFile, audioUrl, setAudioUrl }) => {
                 setPaused(false);
                 setStop(true);
                 const audio = await recorder.stop();
+                console.log('WORLD', audio)
                 setAudioFile(audio.mp3fromblob);
                 setAudioUrl(audio.audioUrl);
                 const stream = recorder.stream;
@@ -57,10 +64,6 @@ const Recorder = ({ audioFile, setAudioFile, audioUrl, setAudioUrl }) => {
                     <Frame>
                         <StopButton type='click' onClick={e => playAudio('Stop', e)} ><StopSVG /></StopButton>
                     </Frame>
-
-                    {/* <PauseButton type='click' onClick={e => playAudio('Pause', e)}> */}
-                    {/* {paused ? <ResumeSVG /> : <PauseSVG />} */}
-                    {/* </PauseButton> */}
                 </>
             }
             {
@@ -88,7 +91,18 @@ align-items: center;
 
 const Frame = styled.div``;
 
-const Button = styled.button`
+// const Button = styled.button`
+//     height: 40px;
+//     width: 40px;
+//     border-radius: 50%;
+//     border: none;
+//     cursor: pointer;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+// `
+
+const RecordButton = styled.a`
     height: 40px;
     width: 40px;
     border-radius: 50%;
@@ -97,20 +111,21 @@ const Button = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-`
-
-const RecordButton = styled(Button)`
     background-color: var(--RED-500);
 `;
 
-const StopButton = styled(Button)`
+const StopButton = styled.a`
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--RED-500);
 `;
 
-const PauseButton = styled(Button)`
-    background-color: var(--GREY-500);
-    margin-left:20px;
-`;
 
 
 export default Recorder;

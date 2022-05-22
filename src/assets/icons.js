@@ -27,6 +27,34 @@ export const EditSVG = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" className="eva eva-edit-outline" fill="currentColor"><g data-name="Layer 2"><g data-name="edit"><rect width="24" height="24" opacity="0"></rect><path d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM9.08 17.62l-3 .28.27-3L12 9.32l2.7 2.7zM16 10.68L13.32 8l1.95-2L18 8.73z"></path></g></g></svg>
 )
 
+
+export const CodePreviewSVG = (props) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 57 57"
+        width={22}
+        height={22}
+        style={{
+            enableBackground: "new 0 0 57 57",
+        }}
+        xmlSpace="preserve"
+        {...props}
+        fill="#000"
+        strokeWidth={5}
+    >
+        <path
+            style={{
+                fill: "#ecf0f1",
+            }}
+            d="M0 0h24v24H0z"
+        />
+        <path
+            d="M20 44a.997.997 0 0 1-.707-.293L4.586 29l14.707-14.707a.999.999 0 1 1 1.414 1.414L7.414 29l13.293 13.293A.999.999 0 0 1 20 44zM37 44a.999.999 0 0 1-.707-1.707L49.586 29 36.293 15.707a.999.999 0 1 1 1.414-1.414L52.414 29 37.707 43.707A.997.997 0 0 1 37 44zM24.001 50a1 1 0 0 1-.978-1.214l9-41a1 1 0 0 1 1.953.429l-9 41a.999.999 0 0 1-.975.785z"
+        />
+    </svg>
+)
+
+
 export const PlusSVG = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" className="eva eva-plus-outline" fill="currentColor"><g data-name="Layer 2"><g data-name="plus"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"></rect><path d="M19 11h-6V5a1 1 0 0 0-2 0v6H5a1 1 0 0 0 0 2h6v6a1 1 0 0 0 2 0v-6h6a1 1 0 0 0 0-2z"></path></g></g></svg>
 )

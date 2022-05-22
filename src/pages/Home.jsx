@@ -11,15 +11,11 @@ const Home = () => (
         <HeaderContainer />
         <Wrapper>
             <Section>
-                <Title>Let's enable your website to <br /> talk</Title>
+                <Title>Let's enable your website to talk</Title>
                 <SubTitle>Use voice widgets to speak to your audience & collect voice feedback. Increase conversions and make better decisions.</SubTitle>
-                <Button to={ROUTES.REGISTER}>Start now - it's free</Button>
-            </Section>
-            <Section>
-                <Title>Let's enable your website to <br /> talk</Title>
-                <SubTitle>Use voice widgets to speak to your audience & collect voice feedback. Increase conversions and make better decisions.</SubTitle>
-                <Button to={ROUTES.REGISTER}>Start now - it's free</Button>
+                <br />
                 <AudioContainer />
+                <Button to={ROUTES.REGISTER}>Start now - it's free</Button>
             </Section>
         </Wrapper>
     </>
@@ -31,25 +27,49 @@ export default Home;
 // SYTLES
 
 const Wrapper = styled.div`
-    width: 80%;
-    margin: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 const Section = styled.section`
-    width: 100%;
+    width: 70%;
     height: calc(100vh - 80px);
     display: flex;
     flex-direction: column;
     padding: 4rem 0;
+    align-items: center;
 `;
 
 const Title = styled.h1`
-    font-size: 7rem;
-    font-weight: bold;
+font-size: 6rem;
+    letter-spacing: 0.3ch;
     text-align: center;
-    margin-top: 3rem;
-    color: var(--TEAL-400);
-    line-height: 6rem;
+   text-transform: uppercase;
+    background-image: linear-gradient(
+        -225deg,
+        #3ad613 0%,
+        #024416 40%,
+        #ff1361 67%,
+        #fff800 100%
+    );
+    background-size: auto auto;
+    background-clip: border-box;
+    background-size: 150% auto;
+    color: #fff;
+    background-clip: text;
+    /* text-fill-color: transparent; */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textclip 2s linear infinite;
+    display: inline-block;
+
+    @keyframes textclip {
+    to {
+        background-position: 300% center;
+    }
+}
 `
 
 const SubTitle = styled.p`
@@ -59,7 +79,7 @@ const SubTitle = styled.p`
     color:var(--GREY-600);
     width: 50%;
     margin: 0 auto;
-    margin-top: 2rem;
+    margin: 2rem 0;
 `
 
 const Button = styled(ReactRouterLink)`
@@ -72,11 +92,10 @@ const Button = styled(ReactRouterLink)`
     border-radius: 5px;
     color: var(--TEAL-500);
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
     cursor: pointer;
     border: 1px solid lightcyan;
     transition: border 250ms linear;
-    
     &:hover {
         border-color:var(--TEAL-500);
     }
