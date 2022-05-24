@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-let BASE_URL = "http://65.0.17.95/";
+let BASE_URL = "http://65.0.17.95/api/";
 const getAuthTokens = () => {
     const authTokens = localStorage.getItem('authTokens');
     return authTokens ? JSON.parse(authTokens).access_token : null
