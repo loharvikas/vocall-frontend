@@ -119,7 +119,7 @@ const APIKeyView = ({ voice, setAPIKeyView }) => {
                 </Modal.Header>
                 <Modal.Body>
                     <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                        <h5>{`https://website.com/voices/iframe/${voice.uuid}`}</h5>
+                        <h5>{`https://www.vocall.vercel.app/voices/iframe/${voice.uuid}`}</h5>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
