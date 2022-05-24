@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-let BASE_URL = process.env.BASE_URL || "http://localhost:8000/api/";
-console.log(BASE_URL)
+let BASE_URL = "http://65.0.17.95/";
 const getAuthTokens = () => {
     const authTokens = localStorage.getItem('authTokens');
     return authTokens ? JSON.parse(authTokens).access_token : null
