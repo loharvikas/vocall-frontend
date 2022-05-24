@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-let BASE_URL = "https://www.vobackend/api/";
+let BASE_URL = "https://www.vobackend.xyz/api/";
 const getAuthTokens = () => {
     const authTokens = localStorage.getItem('authTokens');
     return authTokens ? JSON.parse(authTokens).access_token : null
