@@ -1,12 +1,11 @@
 import axios from 'axios';
 
-let BASE_URL = "http://65.0.17.95/api/";
+let BASE_URL = "https://www.vobackend/api/";
 const getAuthTokens = () => {
     const authTokens = localStorage.getItem('authTokens');
     return authTokens ? JSON.parse(authTokens).access_token : null
 }
 
-console.log(getAuthTokens())
 const axiosInstance = axios.create({
     baseURL: BASE_URL,
     timeout: 5000,
