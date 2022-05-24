@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-let BASE_URL = "http://65.0.17.95/api/";
+let BASE_URL = process.env.BASE_URL || "http://localhost:8000/api/";
 
 const getAuthTokens = () => {
     const authTokens = localStorage.getItem('authTokens');
