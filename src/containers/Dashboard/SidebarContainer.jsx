@@ -30,7 +30,9 @@ const SidebarContainer = () => {
                     </Sidebar.Item>
                 </Sidebar.Group>
                 <Sidebar.Group>
-                    <Sidebar.Footer>New Hello</Sidebar.Footer>
+                    <Sidebar.Header>
+                        V
+                    </Sidebar.Header>
                 </Sidebar.Group>
             </Sidebar.Frame>
         </Sidebar>

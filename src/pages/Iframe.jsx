@@ -7,7 +7,7 @@ import axiosInstance from '../lib/axios';
 const Iframe = () => {
     const { voiceId } = useParams();
     const [audioUrl, setAudioUrl] = useState('');
-
+    console.log(voiceId)
     useEffect(() => {
         axiosInstance.get(`voice/${voiceId}/`)
             .then(res => {

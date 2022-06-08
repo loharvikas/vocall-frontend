@@ -3,8 +3,6 @@ import { AudioContainer, HeaderContainer } from "../containers/";
 import styled from 'styled-components';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import * as ROUTES from '../constant/routes';
-import { Feature } from "../components";
-import { LightButton } from "../globalStyles";
 
 const Home = () => (
     <>

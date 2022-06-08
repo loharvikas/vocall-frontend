@@ -21,7 +21,7 @@ export default function CreateContainer({ user }) {
 
         e.preventDefault();
         setLoading(true);
-        if (audioFile.length === 0 || typeof audioFile === undefined || typeof audioFile === null) {
+        if (audioFile.length === 0 || typeof audioFile === undefined) {
             setMessage({
                 type: STYLES.FORM_ERROR,
                 content: 'Audio is required'

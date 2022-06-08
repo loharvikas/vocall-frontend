@@ -6,6 +6,7 @@ const getAuthTokens = () => {
     return authTokens ? JSON.parse(authTokens).access_token : null
 }
 
+
 const axiosInstance = axios.create({
     baseURL: BASE_URL,
     timeout: 5000,

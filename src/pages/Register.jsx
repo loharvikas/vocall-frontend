@@ -96,7 +96,6 @@ const Register = () => {
                         <Group>
                             <Form.Text>Already have an account ? <Form.Link to={ROUTES.LOGIN}>Sign In</Form.Link></Form.Text>
                         </Group>
-                        <Section>or</Section>
 
                     </Form.Base>
                 </Form>
@@ -111,32 +110,7 @@ const Wrapper = styled.div`
     margin-top: 50px;
 `
 
-const Section = styled.p`
-    text-align: center;
-    position: relative;
-    margin: 20px 0;
-    color: grey;
 
-    &::before {
-        content:"";
-        width: 46%;
-        background-color: lightgray;
-        position: absolute;
-        left: 0;
-        top:10px;
-        height: 1px;
-    }
-
-    &::after {
-        content:"";
-        width: 46%;
-        background-color: lightgray;
-        position: absolute;
-        right: 0;
-        top:10px;
-        height: 1px;
-    }
-`
 
 
 export default Register;

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { recordAudio } from "../../utils";
 import styled from "styled-components";
-import { RecordSVG, StopSVG, PauseSVG, ResumeSVG } from "../../assets/icons";
+import { RecordSVG, StopSVG } from "../../assets/icons";
 import AudioContainer from './AudioContainer';
 import * as STYLES from '../../constant/styles';
 
@@ -51,6 +51,8 @@ const Recorder = ({ audioFile, setAudioFile, audioUrl, setAudioUrl, setMessage }
                 const stream = recorder.stream;
                 stream.getTracks().forEach(track => track.stop());
                 break;
+            default:
+
         }
     }
     return (
@@ -91,16 +93,7 @@ align-items: center;
 
 const Frame = styled.div``;
 
-// const Button = styled.button`
-//     height: 40px;
-//     width: 40px;
-//     border-radius: 50%;
-//     border: none;
-//     cursor: pointer;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-// `
+
 
 const RecordButton = styled.a`
     height: 40px;
